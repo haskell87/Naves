@@ -18,6 +18,7 @@ class jugador:
         self.screen = screen
         self.avanzar = False
         self.retroceder = False
+
         # Bala
         self.bala = Bala(img_bala_ruta, screen)
 
@@ -44,6 +45,7 @@ class jugador:
             self.bala.x = self.x
             self.bala.y = self.y
             self.bala.ang = self.ang
+            self.bala.quieta=False
             self.bala.mover_bala()
 
     def tecla_levantada(self, eventkey):
