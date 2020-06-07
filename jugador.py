@@ -2,11 +2,14 @@ import pygame
 import comunes
 import math
 from Bala import Bala
+from Camara import Camara
+
 
 class jugador:
 
     # Constructor def __init__(self, atributos)
-    def __init__(self, img_ruta, x, y, screen,img_bala_ruta):
+    def __init__(self, img_ruta, x, y, screen,camara, img_bala_ruta):
+        self.camara=camara
         self.img_ori = pygame.image.load(img_ruta)
         self.img = self.img_ori
         self.x = x
@@ -19,8 +22,9 @@ class jugador:
         self.avanzar = False
         self.retroceder = False
 
+
         # Bala
-        self.bala = Bala(img_bala_ruta, screen)
+        self.bala = Bala(img_bala_ruta, screen,self.camara)
 
 
     # Funcion que dibuja el player
@@ -80,12 +84,16 @@ class jugador:
         # vemos que no se escape de los bordes de la pantalla
         if self.x < 0:
             self.x = 0
+            self.camara.set_x( self.camara.x - self.unidad_de_avance * 250)
         elif self.x > (800 - 64):  # 800-64
             self.x = (800 - 64)
+            self.camara.set_x( self.camara.x + self.unidad_de_avance*250)
         if self.y < 0:
             self.y = 0
+            self.camara.set_y( self.camara.y - self.unidad_de_avance * 250)
         elif self.y > (600 - 64):
             self.y = (600 - 64)
+            self.camara.set_y( self.camara.y + self.unidad_de_avance * 250)
 
         #mover bala
         self.bala.mover_bala()

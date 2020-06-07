@@ -1,29 +1,32 @@
 import pygame
 from jugador import jugador  # importa a jugador como un objeto instanciable
 from Enemigo import Enemigo
+from Fondo import Fondo
+from Camara import Camara
 import comunes
 
 # Inicializa PyGame
 pygame.init()
 
-# Crear la pantalla
+# Crear la pantalla y camara
 screen = pygame.display.set_mode((800, 600))
+camara=Camara()
 
 # Fondo
-fondo = pygame.image.load("imagenes/fondo.jpg")
+fondo = Fondo("imagenes/fondo.jpg",screen,camara)
 
 # Titulo e Icono
 pygame.display.set_caption("AirMayhaem")
 icono = pygame.image.load('imagenes/icono.png') # https://www.flaticon.com/search?search-type=icons&word=arcade+space
 pygame.display.set_icon(icono)
 
-player = jugador("imagenes/player.png", 370, 480, screen,"imagenes/bullet.png")
+player = jugador("imagenes/player.png", 370, 480, screen,camara,"imagenes/bullet.png")
 
 enemy_cantidad = 3
 enemy = []
 
 for i in range(enemy_cantidad):
-    enemy.append(Enemigo("imagenes/alien.png",screen))
+    enemy.append(Enemigo("imagenes/alien.png",screen,camara))
 
 # Variable Puntaje
 puntaje_valor = 0
@@ -52,7 +55,7 @@ while ejecutandose:
             player.tecla_levantada(event.key)
 
     # Dibujar Imagen de fondo
-    screen.blit(fondo, (0, 0))
+    fondo.dibujar_fondo()
 
     # Dibujar el jugador
     player.dibujar(player.x, player.y,pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])

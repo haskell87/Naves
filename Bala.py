@@ -1,9 +1,11 @@
 import pygame
 import comunes
+from Camara import Camara
 
 class Bala:
 
-    def __init__(self,img_ruta,screen):
+    def __init__(self,img_ruta,screen,camara):
+        self.camara = camara
         self.img_ori = pygame.image.load(img_ruta)
         self.img = self.img_ori
         self.x = 0
@@ -16,6 +18,7 @@ class Bala:
         self.screen=screen
 
     def mover_bala(self):
+        if self.quieta == False:
             tmp = comunes.avanzar(0,0, self.unidad_de_avance, self.ang)
             self.x_cambio = tmp[0]
             self.y_cambio = tmp[1]
