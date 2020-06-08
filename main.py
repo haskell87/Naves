@@ -4,10 +4,11 @@ from Enemigo import Enemigo
 from Fondo import Fondo
 from Camara import Camara
 import comunes
+from pygame import mouse
 
 # Inicializa PyGame
 pygame.init()
-
+mouse.set_visible(False)
 # Crear la pantalla y camara
 screen = pygame.display.set_mode((800, 600))
 camara=Camara()
@@ -48,6 +49,8 @@ while ejecutandose:
 
         # si se presiona una tecla, mover el jugador
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:  # si el evento es el tratar de cerrar la pantalla, sale del loop
+                ejecutandose = False
             player.tecla_presionada(event.key)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == pygame.BUTTON_LEFT :
             player.disparar()
@@ -75,3 +78,4 @@ while ejecutandose:
 
     # sin esta linea no actualiza el relleno de pantalla
     pygame.display.update()
+mouse.set_visible(True)

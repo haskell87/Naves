@@ -2,8 +2,10 @@ import pygame
 import math
 
 def avanzar(x_cambio_actual, y_cambio_actual,unidad_de_avance, ang):
-    y_cambio = y_cambio_actual - math.sin(ang * (math.pi / 180)) * unidad_de_avance
-    x_cambio = x_cambio_actual + math.cos(ang * (math.pi / 180)) * unidad_de_avance
+    #y_cambio = y_cambio_actual - math.sin(ang * (math.pi / 180)) * unidad_de_avance
+    #x_cambio = x_cambio_actual + math.cos(ang * (math.pi / 180)) * unidad_de_avance
+    y_cambio = - math.sin(ang * (math.pi / 180)) * unidad_de_avance
+    x_cambio = + math.cos(ang * (math.pi / 180)) * unidad_de_avance
     return x_cambio, y_cambio
 
 def sumar_vector(a,b):
